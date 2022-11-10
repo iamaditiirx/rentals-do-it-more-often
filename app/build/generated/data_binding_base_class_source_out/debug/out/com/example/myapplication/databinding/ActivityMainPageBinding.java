@@ -4,6 +4,7 @@ package com.example.myapplication.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,9 @@ public final class ActivityMainPageBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Button abcde;
+
+  @NonNull
   public final TextInputEditText from;
 
   @NonNull
@@ -40,11 +44,12 @@ public final class ActivityMainPageBinding implements ViewBinding {
   @NonNull
   public final TextInputEditText to;
 
-  private ActivityMainPageBinding(@NonNull ConstraintLayout rootView,
+  private ActivityMainPageBinding(@NonNull ConstraintLayout rootView, @NonNull Button abcde,
       @NonNull TextInputEditText from, @NonNull RecyclerView rv,
       @NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2,
       @NonNull TextView textView3, @NonNull TextInputEditText to) {
     this.rootView = rootView;
+    this.abcde = abcde;
     this.from = from;
     this.rv = rv;
     this.textInputLayout = textInputLayout;
@@ -80,6 +85,12 @@ public final class ActivityMainPageBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.abcde;
+      Button abcde = ViewBindings.findChildViewById(rootView, id);
+      if (abcde == null) {
+        break missingId;
+      }
+
       id = R.id.from;
       TextInputEditText from = ViewBindings.findChildViewById(rootView, id);
       if (from == null) {
@@ -116,8 +127,8 @@ public final class ActivityMainPageBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainPageBinding((ConstraintLayout) rootView, from, rv, textInputLayout,
-          textInputLayout2, textView3, to);
+      return new ActivityMainPageBinding((ConstraintLayout) rootView, abcde, from, rv,
+          textInputLayout, textInputLayout2, textView3, to);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

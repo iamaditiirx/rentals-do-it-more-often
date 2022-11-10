@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,8 +33,8 @@ public class MainPage extends AppCompatActivity {
     RecyclerView rv;
     AndroidAdapter myAdapter;
     ArrayList<MainModel> list = new ArrayList<>();
-    TextInputEditText from;
-    TextInputEditText to;
+    EditText from;
+    EditText to;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,53 +46,79 @@ public class MainPage extends AppCompatActivity {
 
             from = findViewById(R.id.from);
             to = findViewById(R.id.to);
-            String userenteredfrom = Objects.requireNonNull(from. getText().toString());
-            String userenteredto = Objects.requireNonNull(to.getText().toString());
+            Button b = findViewById(R.id.abcde);
+
             myAdapter=new AndroidAdapter(this,list);
             rv.setHasFixedSize(true);
             rv.setLayoutManager(new LinearLayoutManager(this));
             rv.setAdapter(myAdapter);
 
 
+            b.setOnClickListener(v -> {
+                list.clear();
+                String userenteredfrom = Objects.requireNonNull(from. getText().toString());
+                String userenteredto = Objects.requireNonNull(to.getText().toString());
+//                    System.out.println(userenteredfrom);
+//                    System.out.println(userenteredto);
+
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot key : snapshot.getChildren()){
+                           // System.out.println();
+                           // System.out.println(key.getValue());
+                            System.out.println();
+                            if (snapshot.exists()) {
+                                from.setError(null);
+                                String toFromDB = snapshot.child(key.getKey()).child("to").getValue().toString();
+                                if (Objects.equals(toFromDB, userenteredto)) {
+                                    to.setError(null);
+                                    String name="";
+                                    String email="";
+                                    String aadhar="";
+
+                                    for (DataSnapshot dataSnapshot : key.getChildren()) {
+
+                                        if(Objects.equals(dataSnapshot.getKey(), "name") ){
+                                            name=dataSnapshot.getValue().toString();
+                                        }
+                                        if(Objects.equals(dataSnapshot.getKey(), "email")){
+                                            email=dataSnapshot.getValue().toString();
+                                        } if(Objects.equals(dataSnapshot.getKey(), "aadhar") ){
+                                            aadhar=dataSnapshot.getValue().toString();
+                                        }
 
 
-        Query checkUser = reference.orderByChild("aadhar").equalTo(userenteredfrom);
 
-        checkUser.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    from.setError(null);
-                    String toFromDB = snapshot.child("to").getValue(String.class);
-                    if (Objects.equals(toFromDB, userenteredto)) {
-                        to.setError(null);
-
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                            MainModel user = dataSnapshot.getValue(MainModel.class);
-                            list.add(user);
-
+                                    }
+                                    MainModel e = new MainModel(name,email,aadhar);
+                                    list.add(e);
+                                }else{
+                                    to.setError("change destination");
+                                    to.requestFocus();
+                                }
+                            } else {
+                                from.setError("change pickup point");
+                                from.requestFocus();
+                            }
+                            myAdapter.notifyDataSetChanged();
 
                         }
-                    }else{
-                            to.setError("change destination");
-                            to.requestFocus();
-                        }
-                    } else {
-                        from.setError("change pickup point");
-                        from.requestFocus();
+
                     }
-                  myAdapter.notifyDataSetChanged();
-                }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            });
 
 
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
 
     }
 }
