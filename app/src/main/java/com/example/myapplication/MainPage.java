@@ -46,7 +46,7 @@ public class MainPage extends AppCompatActivity {
 
             from = findViewById(R.id.from);
             to = findViewById(R.id.to);
-            Button b = findViewById(R.id.abcde);
+            Button button = findViewById(R.id.abcde);
 
             myAdapter=new AndroidAdapter(this,list);
             rv.setHasFixedSize(true);
@@ -54,65 +54,69 @@ public class MainPage extends AppCompatActivity {
             rv.setAdapter(myAdapter);
 
 
-            b.setOnClickListener(v -> {
-                list.clear();
-                String userenteredfrom = Objects.requireNonNull(from. getText().toString());
-                String userenteredto = Objects.requireNonNull(to.getText().toString());
+            button.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    list.clear();
+                    String userenteredfrom = Objects.requireNonNull(from. getText().toString());
+                    String userenteredto = Objects.requireNonNull(to.getText().toString());
 //                    System.out.println(userenteredfrom);
 //                    System.out.println(userenteredto);
 
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot key : snapshot.getChildren()){
-                           // System.out.println();
-                           // System.out.println(key.getValue());
-                            System.out.println();
-                            if (snapshot.exists()) {
-                                from.setError(null);
-                                String toFromDB = snapshot.child(key.getKey()).child("to").getValue().toString();
-                                if (Objects.equals(toFromDB, userenteredto)) {
-                                    to.setError(null);
-                                    String name="";
-                                    String email="";
-                                    String aadhar="";
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot key : snapshot.getChildren()){
+                               // System.out.println();
+                               // System.out.println(key.getValue());
+                                System.out.println();
+                                if (snapshot.exists()) {
+                                    from.setError(null);
+                                    String toFromDB = snapshot.child(key.getKey()).child("to").getValue().toString();
+                                    if (Objects.equals(toFromDB, userenteredto)) {
+                                        to.setError(null);
+                                        String name="";
+                                        String email="";
+                                        String aadhar="";
 
-                                    for (DataSnapshot dataSnapshot : key.getChildren()) {
+                                        for (DataSnapshot dataSnapshot : key.getChildren()) {
 
-                                        if(Objects.equals(dataSnapshot.getKey(), "name") ){
-                                            name=dataSnapshot.getValue().toString();
+                                            if(Objects.equals(dataSnapshot.getKey(), "name") ){
+                                                name=dataSnapshot.getValue().toString();
+                                            }
+                                            if(Objects.equals(dataSnapshot.getKey(), "email")){
+                                                email=dataSnapshot.getValue().toString();
+                                            } if(Objects.equals(dataSnapshot.getKey(), "aadhar") ){
+                                                aadhar=dataSnapshot.getValue().toString();
+                                            }
+
+
+
                                         }
-                                        if(Objects.equals(dataSnapshot.getKey(), "email")){
-                                            email=dataSnapshot.getValue().toString();
-                                        } if(Objects.equals(dataSnapshot.getKey(), "aadhar") ){
-                                            aadhar=dataSnapshot.getValue().toString();
-                                        }
-
-
-
+                                        MainModel e = new MainModel(name,email,aadhar);
+                                        list.add(e);
+                                    }else{
+                                        to.setError("change destination");
+                                        to.requestFocus();
                                     }
-                                    MainModel e = new MainModel(name,email,aadhar);
-                                    list.add(e);
-                                }else{
-                                    to.setError("change destination");
-                                    to.requestFocus();
+                                } else {
+                                    from.setError("change pickup point");
+                                    from.requestFocus();
                                 }
-                            } else {
-                                from.setError("change pickup point");
-                                from.requestFocus();
+                                myAdapter.notifyDataSetChanged();
+
                             }
-                            myAdapter.notifyDataSetChanged();
 
                         }
 
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
 
-                    }
-                });
-
+                }
             });
 
 
