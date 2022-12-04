@@ -5,14 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.myapplication.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -25,21 +25,26 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final Button button3;
 
   @NonNull
-  public final ProgressBar loading;
+  public final TextInputEditText password;
 
   @NonNull
-  public final EditText password;
+  public final TextInputLayout passwordlayout;
 
   @NonNull
-  public final EditText username;
+  public final TextInputEditText username;
+
+  @NonNull
+  public final TextInputLayout usernamelayout;
 
   private ActivityLoginBinding(@NonNull ConstraintLayout rootView, @NonNull Button button3,
-      @NonNull ProgressBar loading, @NonNull EditText password, @NonNull EditText username) {
+      @NonNull TextInputEditText password, @NonNull TextInputLayout passwordlayout,
+      @NonNull TextInputEditText username, @NonNull TextInputLayout usernamelayout) {
     this.rootView = rootView;
     this.button3 = button3;
-    this.loading = loading;
     this.password = password;
+    this.passwordlayout = passwordlayout;
     this.username = username;
+    this.usernamelayout = usernamelayout;
   }
 
   @Override
@@ -75,26 +80,32 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.loading;
-      ProgressBar loading = ViewBindings.findChildViewById(rootView, id);
-      if (loading == null) {
-        break missingId;
-      }
-
       id = R.id.password;
-      EditText password = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText password = ViewBindings.findChildViewById(rootView, id);
       if (password == null) {
         break missingId;
       }
 
+      id = R.id.passwordlayout;
+      TextInputLayout passwordlayout = ViewBindings.findChildViewById(rootView, id);
+      if (passwordlayout == null) {
+        break missingId;
+      }
+
       id = R.id.username;
-      EditText username = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText username = ViewBindings.findChildViewById(rootView, id);
       if (username == null) {
         break missingId;
       }
 
-      return new ActivityLoginBinding((ConstraintLayout) rootView, button3, loading, password,
-          username);
+      id = R.id.usernamelayout;
+      TextInputLayout usernamelayout = ViewBindings.findChildViewById(rootView, id);
+      if (usernamelayout == null) {
+        break missingId;
+      }
+
+      return new ActivityLoginBinding((ConstraintLayout) rootView, button3, password,
+          passwordlayout, username, usernamelayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

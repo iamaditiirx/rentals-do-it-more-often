@@ -35,6 +35,9 @@ public class MainPage extends AppCompatActivity {
     ArrayList<MainModel> list = new ArrayList<>();
     EditText from;
     EditText to;
+    public String name="";
+    public String email="";
+    public String aadhar="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,44 +66,44 @@ public class MainPage extends AppCompatActivity {
                     String userenteredto = Objects.requireNonNull(to.getText().toString());
 //                    System.out.println(userenteredfrom);
 //                    System.out.println(userenteredto);
+                    Query checkUser=reference.orderByChild("from").equalTo(userenteredfrom);
 
-                    reference.addValueEventListener(new ValueEventListener() {
+                   checkUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot key : snapshot.getChildren()){
-                               // System.out.println();
-                               // System.out.println(key.getValue());
-                                System.out.println();
+
                                 if (snapshot.exists()) {
                                     from.setError(null);
-                                    String toFromDB = snapshot.child(key.getKey()).child("to").getValue().toString();
-                                    if (Objects.equals(toFromDB, userenteredto)) {
-                                        to.setError(null);
-                                        String name="";
-                                        String email="";
-                                        String aadhar="";
+                                    for (DataSnapshot key : snapshot.getChildren()) {
+                                        System.out.println();
+                                        System.out.println(key.getValue());
+                                        System.out.println();
+                                        String toFromDB = snapshot.child(key.getKey()).child("to").getValue().toString();
+                                        if (Objects.equals(toFromDB, userenteredto)) {
+                                            to.setError(null);
 
-                                        for (DataSnapshot dataSnapshot : key.getChildren()) {
 
-                                            if(Objects.equals(dataSnapshot.getKey(), "name") ){
-                                                name=dataSnapshot.getValue().toString();
+                                            for (DataSnapshot dataSnapshot : key.getChildren()) {
+
+                                                if (Objects.equals(dataSnapshot.getKey(), "name")) {
+                                                    name = dataSnapshot.getValue().toString();
+                                                }
+                                                if (Objects.equals(dataSnapshot.getKey(), "email")) {
+                                                    email = dataSnapshot.getValue().toString();
+                                                }
+                                                if (Objects.equals(dataSnapshot.getKey(), "aadhar")) {
+                                                    aadhar = dataSnapshot.getValue().toString();
+                                                }
                                             }
-                                            if(Objects.equals(dataSnapshot.getKey(), "email")){
-                                                email=dataSnapshot.getValue().toString();
-                                            } if(Objects.equals(dataSnapshot.getKey(), "aadhar") ){
-                                                aadhar=dataSnapshot.getValue().toString();
-                                            }
+                                            MainModel e = new MainModel(name, email, aadhar);
+                                            list.add(e);
 
-
-
+                                        } else {
+                                            to.setError("change destination");
+                                            to.requestFocus();
                                         }
-                                        MainModel e = new MainModel(name,email,aadhar);
-                                        list.add(e);
-                                    }else{
-                                        to.setError("change destination");
-                                        to.requestFocus();
                                     }
-                                } else {
+                                }else {
                                     from.setError("change pickup point");
                                     from.requestFocus();
                                 }
@@ -108,7 +111,7 @@ public class MainPage extends AppCompatActivity {
 
                             }
 
-                        }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {

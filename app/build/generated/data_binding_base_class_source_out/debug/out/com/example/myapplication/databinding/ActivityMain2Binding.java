@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.myapplication.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,29 +22,52 @@ public final class ActivityMain2Binding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final EditText aadhar;
+  public final TextInputEditText aadhar;
 
   @NonNull
-  public final EditText email;
+  public final TextInputEditText email;
 
   @NonNull
-  public final EditText from;
+  public final TextInputEditText from;
 
   @NonNull
-  public final EditText name;
+  public final TextInputEditText name;
 
   @NonNull
-  public final EditText password1;
+  public final TextInputEditText password1;
 
   @NonNull
   public final Button regbtn;
 
   @NonNull
-  public final EditText to;
+  public final TextInputLayout textInputLayout4;
 
-  private ActivityMain2Binding(@NonNull ConstraintLayout rootView, @NonNull EditText aadhar,
-      @NonNull EditText email, @NonNull EditText from, @NonNull EditText name,
-      @NonNull EditText password1, @NonNull Button regbtn, @NonNull EditText to) {
+  @NonNull
+  public final TextInputLayout textInputLayout5;
+
+  @NonNull
+  public final TextInputLayout textInputLayout6;
+
+  @NonNull
+  public final TextInputLayout textInputLayout7;
+
+  @NonNull
+  public final TextInputLayout textInputLayout8;
+
+  @NonNull
+  public final TextInputLayout textInputLayout9;
+
+  @NonNull
+  public final TextInputEditText to;
+
+  private ActivityMain2Binding(@NonNull ConstraintLayout rootView,
+      @NonNull TextInputEditText aadhar, @NonNull TextInputEditText email,
+      @NonNull TextInputEditText from, @NonNull TextInputEditText name,
+      @NonNull TextInputEditText password1, @NonNull Button regbtn,
+      @NonNull TextInputLayout textInputLayout4, @NonNull TextInputLayout textInputLayout5,
+      @NonNull TextInputLayout textInputLayout6, @NonNull TextInputLayout textInputLayout7,
+      @NonNull TextInputLayout textInputLayout8, @NonNull TextInputLayout textInputLayout9,
+      @NonNull TextInputEditText to) {
     this.rootView = rootView;
     this.aadhar = aadhar;
     this.email = email;
@@ -51,6 +75,12 @@ public final class ActivityMain2Binding implements ViewBinding {
     this.name = name;
     this.password1 = password1;
     this.regbtn = regbtn;
+    this.textInputLayout4 = textInputLayout4;
+    this.textInputLayout5 = textInputLayout5;
+    this.textInputLayout6 = textInputLayout6;
+    this.textInputLayout7 = textInputLayout7;
+    this.textInputLayout8 = textInputLayout8;
+    this.textInputLayout9 = textInputLayout9;
     this.to = to;
   }
 
@@ -82,31 +112,31 @@ public final class ActivityMain2Binding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.aadhar;
-      EditText aadhar = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText aadhar = ViewBindings.findChildViewById(rootView, id);
       if (aadhar == null) {
         break missingId;
       }
 
       id = R.id.email;
-      EditText email = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText email = ViewBindings.findChildViewById(rootView, id);
       if (email == null) {
         break missingId;
       }
 
       id = R.id.from;
-      EditText from = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText from = ViewBindings.findChildViewById(rootView, id);
       if (from == null) {
         break missingId;
       }
 
       id = R.id.name;
-      EditText name = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText name = ViewBindings.findChildViewById(rootView, id);
       if (name == null) {
         break missingId;
       }
 
       id = R.id.password1;
-      EditText password1 = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText password1 = ViewBindings.findChildViewById(rootView, id);
       if (password1 == null) {
         break missingId;
       }
@@ -117,14 +147,51 @@ public final class ActivityMain2Binding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textInputLayout4;
+      TextInputLayout textInputLayout4 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout4 == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayout5;
+      TextInputLayout textInputLayout5 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout5 == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayout6;
+      TextInputLayout textInputLayout6 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout6 == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayout7;
+      TextInputLayout textInputLayout7 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout7 == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayout8;
+      TextInputLayout textInputLayout8 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout8 == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayout9;
+      TextInputLayout textInputLayout9 = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayout9 == null) {
+        break missingId;
+      }
+
       id = R.id.to;
-      EditText to = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText to = ViewBindings.findChildViewById(rootView, id);
       if (to == null) {
         break missingId;
       }
 
       return new ActivityMain2Binding((ConstraintLayout) rootView, aadhar, email, from, name,
-          password1, regbtn, to);
+          password1, regbtn, textInputLayout4, textInputLayout5, textInputLayout6, textInputLayout7,
+          textInputLayout8, textInputLayout9, to);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

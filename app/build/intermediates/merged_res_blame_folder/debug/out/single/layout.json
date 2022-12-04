@@ -1,26 +1,26 @@
 [
     {
-        "merged": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main2.xml",
-        "source": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main2.xml"
+        "merged": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\one_view.xml",
-        "source": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\one_view.xml"
+        "merged": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.myapplication.app-mergeDebugResources-37:/layout/activity_main_page.xml",
-        "source": "com.example.myapplication.app-main-40:/layout/activity_main_page.xml"
+        "merged": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main_page.xml",
+        "source": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main_page.xml"
     },
     {
-        "merged": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main_page.xml",
-        "source": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main_page.xml"
+        "merged": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\one_view.xml",
+        "source": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\one_view.xml"
     },
     {
-        "merged": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main.xml"
+        "merged": "com.example.myapplication.app-mergeDebugResources-37:/layout/activity_login.xml",
+        "source": "com.example.myapplication.app-main-40:/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\amiya\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_login.xml"
+        "merged": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-mergeDebugResources-37:\\layout\\activity_main2.xml",
+        "source": "C:\\Users\\DELL\\.gradle\\daemon\\7.4\\com.example.myapplication.app-main-40:\\layout\\activity_main2.xml"
     }
 ]
